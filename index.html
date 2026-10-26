@@ -3,84 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Go Ride Sri Lanka</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6f4;color:#17221d}
-header{background:#087c4c;color:white;padding:22px 18px;border-radius:0 0 22px 22px}
-header h1{margin:0;font-size:27px}
-header p{margin-bottom:0}
-main{padding:18px;max-width:520px;margin:auto}
-.card{background:white;padding:20px;border-radius:18px;margin-bottom:17px;box-shadow:0 3px 12px #0000000d}
-h2{font-size:20px;margin-top:0}
-label{display:block;margin:14px 0 7px;font-weight:bold}
-input,select,button{width:100%;padding:14px;border-radius:10px;font-size:16px}
-input,select{border:1px solid #cbd5cf;background:white}
-.vehicles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.vehicle{border:1px solid #cbd5cf;border-radius:12px;padding:13px 3px;text-align:center;cursor:pointer;background:white}
-.vehicle.active{border:2px solid #07834d;background:#e5f7ed}
-.vehicle span{display:block;font-size:26px;margin-bottom:7px}
-button{border:0;background:#07834d;color:white;font-weight:bold;margin-top:18px;cursor:pointer}
-#result{display:none;background:#e5f7ed;padding:15px;border-radius:12px;margin-top:15px;line-height:1.7}
-footer{text-align:center;padding:20px;color:#68756d;font-size:13px}
-</style>
-</head>
-<body>
-<header>
-<h1>🛵 Go Ride Sri Lanka</h1>
-<p>ඔබේ ගමන පහසුවෙන් ආරම්භ කරන්න!</p>
-</header>
-<main>
-<div class="card">
-<h2>📍 ඔබේ ගමන වෙන්කරගන්න</h2>
-<label for="pickup">ගමන ආරම්භ කරන ස්ථානය</label>
-<input id="pickup" placeholder="උදා: කොළඹ කොටුව">
-<label for="destination">ගමනාන්තය</label>
-<input id="destination" placeholder="උදා: ගාල්ල">
-<label>වාහනය තෝරන්න</label>
-<div class="vehicles">
-<div class="vehicle active" data-type="ත්‍රීවීල්" onclick="choose(this)"><span>🛺</span>ත්‍රීවීල්</div>
-<div class="vehicle" data-type="කාර්" onclick="choose(this)"><span>🚗</span>කාර්</div>
-<div class="vehicle" data-type="බයික්" onclick="choose(this)"><span>🏍️</span>බයික්</div>
-</div>
-<button onclick="bookRide()">ගමන් ඉල්ලීම සකස් කරන්න</button>
-<div id="result"></div>
-</div>
-<div class="card">
-<h2>🇱🇰 අපි ගැන</h2>
-<p>Go Ride Sri Lanka — ඔබේ ගමනට පහසු සහ විශ්වාසදායක සේවාවක් ගොඩනැගීම අපේ අරමුණයි.</p>
-<p>දැනට මෙය ආදර්ශයක් පමණි. සැබෑ රියදුරන් හෝ ගෙවීම් තවම සම්බන්ධ කර නැත.</p>
-</div>
-</main>
-<footer>© Go Ride Sri Lanka</footer>
-<script>
-let selected="ත්‍රීවීල්";
-function choose(el){
-document.querySelectorAll('.vehicle').forEach(v=>v.classList.remove('active'));
-el.classList.add('active');
-selected=el.dataset.type;
-}
-function bookRide(){
-let p=document.getElementById('pickup').value.trim();
-let d=document.getElementById('destination').value.trim();
-let r=document.getElementById('result');
-if(!p||!d){alert('කරුණාකර ආරම්භක ස්ථානය සහ ගමනාන්තය ඇතුළත් කරන්න.');return;}
-r.style.display='block';
-r.innerHTML='<strong>ඔබේ ගමන් විස්තර</strong><br>ආරම්භය: '+safe(p)+'<br>ගමනාන්තය: '+safe(d)+'<br>වාහනය: '+selected+'<br><br>මෙය ආදර්ශ ඉල්ලීමක් පමණයි. තවම රියදුරෙකුට යවන්නේ නැහැ.';
-}
-function safe(s){
-let e=document.createElement('span');
-e.textContent=s;
-return e.innerHTML;
-}
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="si">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Go Ride Sri Lanka</title>
 
 <style>
@@ -91,38 +14,38 @@ return e.innerHTML;
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f2f5f3;
-  color: #202820;
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
 header {
-  background: #07873d;
+  background: #087c4c;
   color: white;
-  padding: 22px 18px;
-  border-radius: 0 0 22px 22px;
+  padding: 25px 15px;
+  text-align: center;
 }
 
 header h1 {
-  margin: 0;
+  margin: 0 0 8px;
   font-size: 27px;
 }
 
 header p {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 main {
-  max-width: 500px;
+  max-width: 520px;
   margin: auto;
-  padding: 16px;
+  padding: 18px;
 }
 
 .card {
   background: white;
   padding: 20px;
-  border-radius: 18px;
-  margin-bottom: 16px;
-  box-shadow: 0 3px 12px #0000000c;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px #00000010;
 }
 
 h2 {
@@ -130,93 +53,84 @@ h2 {
   margin-top: 0;
 }
 
-label {
-  display: block;
-  margin: 15px 0 7px;
-  font-weight: bold;
-}
-
-input, select, button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-input, select {
-  border: 1px solid #cbd5cf;
-  background: white;
-}
-
 .vehicles {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 14px;
+  gap: 12px;
 }
 
 .vehicle {
-  background: white;
-  border: 2px solid #dce4de;
+  border: 2px solid #dbe3eb;
   border-radius: 12px;
-  padding: 14px 5px;
-  text-align: center;
+  background: white;
+  padding: 16px 8px;
   cursor: pointer;
+  text-align: center;
+  font-size: 16px;
 }
 
 .vehicle.active {
-  border: 2px solid #07873d;
-  background: #eafff0;
+  border-color: #087c4c;
+  background: #e8f7ef;
 }
 
-.vehicle span {
+.vehicle .icon {
   display: block;
-  font-size: 29px;
+  font-size: 32px;
   margin-bottom: 8px;
 }
 
-.vehicle small {
+.vehicle strong {
   display: block;
-  margin-top: 5px;
-  color: #59645c;
+  margin-bottom: 6px;
 }
 
-button {
-  border: none;
-  background: #07873d;
-  color: white;
+.vehicle small {
+  color: #087c4c;
   font-weight: bold;
-  margin-top: 15px;
-  cursor: pointer;
 }
 
-button:active {
-  opacity: 0.8;
+label {
+  display: block;
+  margin: 15px 0 8px;
+  font-weight: bold;
 }
 
-.fare {
-  background: #eafff0;
-  padding: 16px;
+input {
+  width: 100%;
+  padding: 14px;
+  font-size: 17px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+}
+
+.result {
+  background: #087c4c;
+  color: white;
+  padding: 22px;
   border-radius: 12px;
-  margin-top: 16px;
   text-align: center;
 }
 
-.fare strong {
-  font-size: 26px;
-  color: #07873d;
+.result p {
+  margin: 0 0 8px;
+}
+
+#fare {
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .note {
-  color: #68736b;
+  color: #64748b;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 footer {
   text-align: center;
   padding: 20px;
-  color: #68736b;
+  color: #64748b;
   font-size: 13px;
 }
 </style>
@@ -226,111 +140,119 @@ footer {
 
 <header>
   <h1>🚗 Go Ride Sri Lanka</h1>
-  <p>ඔබේ ගමන පහසු කරගන්න!</p>
+  <p>ඔබේ ගමනේ ගාස්තුව පහසුවෙන් දැනගන්න</p>
 </header>
 
 <main>
 
-  <div class="card">
-    <h2>📍 ඔබේ ගමන</h2>
-
-    <label for="pickup">ගමන ආරම්භ කරන ස්ථානය</label>
-    <input id="pickup" type="text"
-      placeholder="උදා: කොළඹ කොටුව">
-
-    <label for="destination">ගමනාන්තය</label>
-    <input id="destination" type="text"
-      placeholder="උදා: ගාල්ල">
-
-    <label for="distance">ඇස්තමේන්තු දුර (කි.මී.)</label>
-    <input id="distance" type="number"
-      min="1" max="1000" placeholder="උදා: 10">
-  </div>
-
-  <div class="card">
+  <section class="card">
     <h2>🚘 වාහනය තෝරන්න</h2>
 
     <div class="vehicles">
 
-      <div class="vehicle active"
-        data-type="ත්‍රීවීල්" data-rate="100"
+      <button class="vehicle active"
+        type="button"
+        data-type="Bike"
+        data-rate="50"
         onclick="chooseVehicle(this)">
-        <span>🛺</span>
-        <b>ත්‍රීවීල්</b>
-        <small>ආරම්භක ගාස්තුව රු.100</small>
-      </div>
+        <span class="icon">🏍️</span>
+        <strong>Bike</strong>
+        <small>රු. 50 / KM</small>
+      </button>
 
-      <div class="vehicle"
-        data-type="කාර්" data-rate="150"
+      <button class="vehicle"
+        type="button"
+        data-type="Three Wheel"
+        data-rate="100"
         onclick="chooseVehicle(this)">
-        <span>🚗</span>
-        <b>කාර්</b>
-        <small>ආරම්භක ගාස්තුව රු.150</small>
-      </div>
+        <span class="icon">🛺</span>
+        <strong>Three Wheel</strong>
+        <small>රු. 100 / KM</small>
+      </button>
 
-      <div class="vehicle"
-        data-type="බයික්" data-rate="70"
+      <button class="vehicle"
+        type="button"
+        data-type="Car"
+        data-rate="150"
         onclick="chooseVehicle(this)">
-        <span>🏍️</span>
-        <b>බයික්</b>
-        <small>ආරම්භක ගාස්තුව රු.70</small>
-      </div>
+        <span class="icon">🚗</span>
+        <strong>Car</strong>
+        <small>රු. 150 / KM</small>
+      </button>
 
-      <div class="vehicle"
-        data-type="වෑන්" data-rate="250"
+      <button class="vehicle"
+        type="button"
+        data-type="Van"
+        data-rate="200"
         onclick="chooseVehicle(this)">
-        <span>🚐</span>
-        <b>වෑන්</b>
-        <small>ආරම්භක ගාස්තුව රු.250</small>
-      </div>
+        <span class="icon">🚐</span>
+        <strong>Van</strong>
+        <small>රු. 200 / KM</small>
+      </button>
+
+      <button class="vehicle"
+        type="button"
+        data-type="SUV"
+        data-rate="200"
+        onclick="chooseVehicle(this)">
+        <span class="icon">🚙</span>
+        <strong>SUV</strong>
+        <small>රු. 200 / KM</small>
+      </button>
 
     </div>
+  </section>
 
-    <div class="fare">
-      <p>💰 ඇස්තමේන්තු ගමන් ගාස්තුව</p>
-      <strong id="fare">රු. 0.00</strong>
-      <p id="fareNote" class="note">
-        දුර ඇතුළත් කර ගාස්තුව ගණනය කරන්න.
-      </p>
-    </div>
+  <section class="card">
+    <h2>📍 ගමන් දුර ඇතුළත් කරන්න</h2>
 
-    <button onclick="calculateFare()">
-      💰 ගාස්තුව ගණනය කරන්න
-    </button>
+    <label for="distance">ගමන් දුර (කිලෝමීටර්)</label>
 
-    <button onclick="bookRide()">
-      🚕 ගමනක් වෙන්කරන්න
-    </button>
+    <input
+      type="number"
+      id="distance"
+      min="0"
+      max="1000"
+      step="any"
+      placeholder="උදා: 10"
+      oninput="calculateFare()">
 
     <p class="note">
-      * මෙය ආදර්ශ ගාස්තු ගණනය කිරීමකි.
-      සැබෑ ගාස්තු වාහනය, දුර, කාලය සහ සේවා ගාස්තු
-      අනුව වෙනස් විය හැකිය.
+      ගමන් දුර කිලෝමීටර්වලින් ඇතුළත් කරන්න.
     </p>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>🛡️ ආරක්ෂිත ගමනක්</h2>
-    <p>
-      Go Ride Sri Lanka සමඟ ඔබේ ගමන පහසු කරගන්න.
-      ඔබේ ගමන් විස්තර නිවැරදිව ඇතුළත් කරන්න.
+  <section class="card">
+    <div class="result">
+      <p>💰 ඔබේ මුළු ගාස්තුව</p>
+      <div id="fare" aria-live="polite">රු. 0.00</div>
+      <p id="fareNote">වාහනය සහ ගමන් දුර තෝරන්න</p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🧾 ගාස්තු විස්තර</h2>
+    <p>වාහනය: <strong id="vehicleName">Bike</strong></p>
+    <p>කිලෝමීටරයක ගාස්තුව:
+      <strong id="rate">රු. 50.00</strong>
     </p>
-  </div>
+    <p>ගමන් දුර: <strong id="distanceText">0 KM</strong></p>
+    <p>මුළු ගාස්තුව: <strong id="totalText">රු. 0.00</strong></p>
+  </section>
 
 </main>
 
 <footer>
-  © 2026 Go Ride Sri Lanka 🇱🇰
+  Go Ride Sri Lanka © 2026
 </footer>
 
 <script>
-let selectedVehicle = "ත්‍රීවීල්";
-let selectedRate = 100;
-let currentFare = 0;
+let selectedVehicle = "Bike";
+let selectedRate = 50;
 
 function chooseVehicle(element) {
-  document.querySelectorAll(".vehicle").forEach(v => {
-    v.classList.remove("active");
+  document.querySelectorAll(".vehicle").forEach(function(vehicle) {
+    vehicle.classList.remove("active");
   });
 
   element.classList.add("active");
@@ -342,37 +264,58 @@ function chooseVehicle(element) {
 }
 
 function calculateFare() {
-  const distance = Number(
-    document.getElementById("distance").value
-  );
+  const distanceInput = document.getElementById("distance");
+  const fareDisplay = document.getElementById("fare");
+  const fareNote = document.getElementById("fareNote");
 
-  if (!Number.isFinite(distance) ||
-      distance <= 0 || distance > 1000) {
-    currentFare = 0;
-    document.getElementById("fare").textContent = "රු. 0.00";
-    document.getElementById("fareNote").textContent =
-      "කරුණාකර කි.මී. 1 සිට 1000 දක්වා දුරක් ඇතුළත් කරන්න.";
+  const distanceText = document.getElementById("distanceText");
+  const totalText = document.getElementById("totalText");
+  const vehicleName = document.getElementById("vehicleName");
+  const rateDisplay = document.getElementById("rate");
+
+  const distanceValue = distanceInput.value.trim();
+  const distance = Number(distanceValue);
+
+  vehicleName.textContent = selectedVehicle;
+  rateDisplay.textContent =
+    "රු. " + selectedRate.toFixed(2);
+
+  if (
+    distanceValue === "" ||
+    !Number.isFinite(distance) ||
+    distance <= 0 ||
+    distance > 1000
+  ) {
+    fareDisplay.textContent = "රු. 0.00";
+    totalText.textContent = "රු. 0.00";
+    distanceText.textContent = "0 KM";
+
+    fareNote.textContent =
+      "නිවැරදි ගමන් දුරක් ඇතුළත් කරන්න";
+
     return;
   }
 
-  currentFare = selectedRate + distance * selectedRate;
+  const totalFare = distance * selectedRate;
 
-  document.getElementById("fare").textContent =
-    "රු. " + current
-function calculateFare() {
-    const distanceInput = document.getElementById("distance");
-    const fareDisplay = document.getElementById("fare");
+  fareDisplay.textContent =
+    "රු. " + totalFare.toLocaleString("en-LK", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
 
-    const distance = Number(distanceInput.value);
+  totalText.textContent = fareDisplay.textContent;
 
-    if (!Number.isFinite(distance) || distance <= 0) {
-        alert("කරුණාකර නිවැරදි දුරක් ඇතුළත් කරන්න.");
-        return;
-    }
+  distanceText.textContent = distance + " KM";
 
-    const fare = distance * selectedRate;
-
-    currentFare = fare;
-    fareDisplay.textContent =
-        "රු. " + fare.toFixed(2);
+  fareNote.textContent =
+    distance + " KM × රු. " + selectedRate +
+    " = රු. " + totalFare.toLocaleString("en-LK", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
 }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Ride Sri Lanka</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6f4;color:#17221d}
+header{background:#087c4c;color:white;padding:22px 18px;border-radius:0 0 22px 22px}
+header h1{margin:0;font-size:27px}
+header p{margin-bottom:0}
+main{padding:18px;max-width:520px;margin:auto}
+.card{background:white;padding:20px;border-radius:18px;margin-bottom:17px;box-shadow:0 3px 12px #0000000d}
+h2{font-size:20px;margin-top:0}
+label{display:block;margin:14px 0 7px;font-weight:bold}
+input,select,button{width:100%;padding:14px;border-radius:10px;font-size:16px}
+input,select{border:1px solid #cbd5cf;background:white}
+.vehicles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vehicle{border:1px solid #cbd5cf;border-radius:12px;padding:13px 3px;text-align:center;cursor:pointer;background:white}
+.vehicle.active{border:2px solid #07834d;background:#e5f7ed}
+.vehicle span{display:block;font-size:26px;margin-bottom:7px}
+button{border:0;background:#07834d;color:white;font-weight:bold;margin-top:18px;cursor:pointer}
+#result{display:none;background:#e5f7ed;padding:15px;border-radius:12px;margin-top:15px;line-height:1.7}
+footer{text-align:center;padding:20px;color:#68756d;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>🛵 Go Ride Sri Lanka</h1>
+<p>ඔබේ ගමන පහසුවෙන් ආරම්භ කරන්න!</p>
+</header>
+<main>
+<div class="card">
+<h2>📍 ඔබේ ගමන වෙන්කරගන්න</h2>
+<label for="pickup">ගමන ආරම්භ කරන ස්ථානය</label>
+<input id="pickup" placeholder="උදා: කොළඹ කොටුව">
+<label for="destination">ගමනාන්තය</label>
+<input id="destination" placeholder="උදා: ගාල්ල">
+<label>වාහනය තෝරන්න</label>
+<div class="vehicles">
+<div class="vehicle active" data-type="ත්‍රීවීල්" onclick="choose(this)"><span>🛺</span>ත්‍රීවීල්</div>
+<div class="vehicle" data-type="කාර්" onclick="choose(this)"><span>🚗</span>කාර්</div>
+<div class="vehicle" data-type="බයික්" onclick="choose(this)"><span>🏍️</span>බයික්</div>
+</div>
+<button onclick="bookRide()">ගමන් ඉල්ලීම සකස් කරන්න</button>
+<div id="result"></div>
+</div>
+<div class="card">
+<h2>🇱🇰 අපි ගැන</h2>
+<p>Go Ride Sri Lanka — ඔබේ ගමනට පහසු සහ විශ්වාසදායක සේවාවක් ගොඩනැගීම අපේ අරමුණයි.</p>
+<p>දැනට මෙය ආදර්ශයක් පමණි. සැබෑ රියදුරන් හෝ ගෙවීම් තවම සම්බන්ධ කර නැත.</p>
+</div>
+</main>
+<footer>© Go Ride Sri Lanka</footer>
+<script>
+let selected="ත්‍රීවීල්";
+function choose(el){
+document.querySelectorAll('.vehicle').forEach(v=>v.classList.remove('active'));
+el.classList.add('active');
+selected=el.dataset.type;
+}
+function bookRide(){
+let p=document.getElementById('pickup').value.trim();
+let d=document.getElementById('destination').value.trim();
+let r=document.getElementById('result');
+if(!p||!d){alert('කරුණාකර ආරම්භක ස්ථානය සහ ගමනාන්තය ඇතුළත් කරන්න.');return;}
+r.style.display='block';
+r.innerHTML='<strong>ඔබේ ගමන් විස්තර</strong><br>ආරම්භය: '+safe(p)+'<br>ගමනාන්තය: '+safe(d)+'<br>වාහනය: '+selected+'<br><br>මෙය ආදර්ශ ඉල්ලීමක් පමණයි. තවම රියදුරෙකුට යවන්නේ නැහැ.';
+}
+function safe(s){
+let e=document.createElement('span');
+e.textContent=s;
+return e.innerHTML;
+}
+</script>
+</body>
+</html>

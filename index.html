@@ -76,3 +76,286 @@ return e.innerHTML;
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Ride Sri Lanka</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5f3;
+  color: #202820;
+}
+
+header {
+  background: #07873d;
+  color: white;
+  padding: 22px 18px;
+  border-radius: 0 0 22px 22px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
+main {
+  max-width: 500px;
+  margin: auto;
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 12px #0000000c;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+input, select {
+  border: 1px solid #cbd5cf;
+  background: white;
+}
+
+.vehicles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.vehicle {
+  background: white;
+  border: 2px solid #dce4de;
+  border-radius: 12px;
+  padding: 14px 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.vehicle.active {
+  border: 2px solid #07873d;
+  background: #eafff0;
+}
+
+.vehicle span {
+  display: block;
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+
+.vehicle small {
+  display: block;
+  margin-top: 5px;
+  color: #59645c;
+}
+
+button {
+  border: none;
+  background: #07873d;
+  color: white;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+.fare {
+  background: #eafff0;
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.fare strong {
+  font-size: 26px;
+  color: #07873d;
+}
+
+.note {
+  color: #68736b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #68736b;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚗 Go Ride Sri Lanka</h1>
+  <p>ඔබේ ගමන පහසු කරගන්න!</p>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>📍 ඔබේ ගමන</h2>
+
+    <label for="pickup">ගමන ආරම්භ කරන ස්ථානය</label>
+    <input id="pickup" type="text"
+      placeholder="උදා: කොළඹ කොටුව">
+
+    <label for="destination">ගමනාන්තය</label>
+    <input id="destination" type="text"
+      placeholder="උදා: ගාල්ල">
+
+    <label for="distance">ඇස්තමේන්තු දුර (කි.මී.)</label>
+    <input id="distance" type="number"
+      min="1" max="1000" placeholder="උදා: 10">
+  </div>
+
+  <div class="card">
+    <h2>🚘 වාහනය තෝරන්න</h2>
+
+    <div class="vehicles">
+
+      <div class="vehicle active"
+        data-type="ත්‍රීවීල්" data-rate="100"
+        onclick="chooseVehicle(this)">
+        <span>🛺</span>
+        <b>ත්‍රීවීල්</b>
+        <small>ආරම්භක ගාස්තුව රු.100</small>
+      </div>
+
+      <div class="vehicle"
+        data-type="කාර්" data-rate="150"
+        onclick="chooseVehicle(this)">
+        <span>🚗</span>
+        <b>කාර්</b>
+        <small>ආරම්භක ගාස්තුව රු.150</small>
+      </div>
+
+      <div class="vehicle"
+        data-type="බයික්" data-rate="70"
+        onclick="chooseVehicle(this)">
+        <span>🏍️</span>
+        <b>බයික්</b>
+        <small>ආරම්භක ගාස්තුව රු.70</small>
+      </div>
+
+      <div class="vehicle"
+        data-type="වෑන්" data-rate="250"
+        onclick="chooseVehicle(this)">
+        <span>🚐</span>
+        <b>වෑන්</b>
+        <small>ආරම්භක ගාස්තුව රු.250</small>
+      </div>
+
+    </div>
+
+    <div class="fare">
+      <p>💰 ඇස්තමේන්තු ගමන් ගාස්තුව</p>
+      <strong id="fare">රු. 0.00</strong>
+      <p id="fareNote" class="note">
+        දුර ඇතුළත් කර ගාස්තුව ගණනය කරන්න.
+      </p>
+    </div>
+
+    <button onclick="calculateFare()">
+      💰 ගාස්තුව ගණනය කරන්න
+    </button>
+
+    <button onclick="bookRide()">
+      🚕 ගමනක් වෙන්කරන්න
+    </button>
+
+    <p class="note">
+      * මෙය ආදර්ශ ගාස්තු ගණනය කිරීමකි.
+      සැබෑ ගාස්තු වාහනය, දුර, කාලය සහ සේවා ගාස්තු
+      අනුව වෙනස් විය හැකිය.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🛡️ ආරක්ෂිත ගමනක්</h2>
+    <p>
+      Go Ride Sri Lanka සමඟ ඔබේ ගමන පහසු කරගන්න.
+      ඔබේ ගමන් විස්තර නිවැරදිව ඇතුළත් කරන්න.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  © 2026 Go Ride Sri Lanka 🇱🇰
+</footer>
+
+<script>
+let selectedVehicle = "ත්‍රීවීල්";
+let selectedRate = 100;
+let currentFare = 0;
+
+function chooseVehicle(element) {
+  document.querySelectorAll(".vehicle").forEach(v => {
+    v.classList.remove("active");
+  });
+
+  element.classList.add("active");
+
+  selectedVehicle = element.dataset.type;
+  selectedRate = Number(element.dataset.rate);
+
+  calculateFare();
+}
+
+function calculateFare() {
+  const distance = Number(
+    document.getElementById("distance").value
+  );
+
+  if (!Number.isFinite(distance) ||
+      distance <= 0 || distance > 1000) {
+    currentFare = 0;
+    document.getElementById("fare").textContent = "රු. 0.00";
+    document.getElementById("fareNote").textContent =
+      "කරුණාකර කි.මී. 1 සිට 1000 දක්වා දුරක් ඇතුළත් කරන්න.";
+    return;
+  }
+
+  currentFare = selectedRate + distance * selectedRate;
+
+  document.getElementById("fare").textContent =
+    "රු. " + current

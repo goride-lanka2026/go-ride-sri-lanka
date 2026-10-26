@@ -359,3 +359,20 @@ function calculateFare() {
 
   document.getElementById("fare").textContent =
     "රු. " + current
+function calculateFare() {
+    const distanceInput = document.getElementById("distance");
+    const fareDisplay = document.getElementById("fare");
+
+    const distance = Number(distanceInput.value);
+
+    if (!Number.isFinite(distance) || distance <= 0) {
+        alert("කරුණාකර නිවැරදි දුරක් ඇතුළත් කරන්න.");
+        return;
+    }
+
+    const fare = distance * selectedRate;
+
+    currentFare = fare;
+    fareDisplay.textContent =
+        "රු. " + fare.toFixed(2);
+}
